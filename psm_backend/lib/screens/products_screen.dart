@@ -28,13 +28,39 @@ class ProductScreen extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                  itemCount: 10,
+                  itemCount: Product.products.length,
                   itemBuilder: (context, index) {
-                    return Text('Product');
+                    return SizedBox(
+                      height: 120,
+                      child: ProductCard(product: Product.products[index]),
+                    );
                   }),
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ProductCard extends StatelessWidget {
+  final Product product;
+
+  const ProductCard({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Column(
+        children: [
+          Text(
+            product.name,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          )
+        ],
       ),
     );
   }
