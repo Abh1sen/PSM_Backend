@@ -15,11 +15,30 @@ class HomeScreen extends StatelessWidget {
             )),
         backgroundColor: Colors.white,
         centerTitle: true,
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
       ),
       body: SizedBox(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: const [],
+        children: [
+          Container(
+            width: double.infinity,
+            height: 150,
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: InkWell(
+              onTap: (){
+                Get.to(()=>ProductScreen());
+              },
+              child: const Card(
+                child: Center(
+                  child: Text('Go To Products')
+                ),
+              ),
+            ),
+          )
+        ],
       )),
     );
   }

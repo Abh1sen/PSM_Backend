@@ -17,11 +17,23 @@ class ProductScreen extends StatelessWidget {
               color: Colors.black,
             )),
         backgroundColor: Colors.white,
+        centerTitle: true,
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
-          children: const [],
+          children: [
+            Expanded(
+              child: ListView.builder(
+                  itemCount: 10,
+                  itemBuilder: (context, index) {
+                    return Text('Product');
+                  }),
+            )
+          ],
         ),
       ),
     );
