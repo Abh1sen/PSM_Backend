@@ -34,8 +34,20 @@ class NewProductScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     IconButton(
-                      onPressed: () {
-                        Get.to(() => const NewProductScreen());
+                      onPressed: () async {
+                        ImagePicker _picker = ImagePicker();
+                        final XFile? _image = await _picker.pickImage(
+                            source: ImageSource.gallery);
+
+                        if (_image == null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text('No Image was Selected.')));
+                        }
+
+                        if (_image != null) {
+                          
+                        }
                       },
                       icon: Icon(
                         Icons.add_circle,
