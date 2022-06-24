@@ -80,17 +80,68 @@ class ProductCard extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                Column(
-                  children: [
-                    Slider(
-                        value: product.price.toDouble(),
-                        min: 0,
-                        max: 200000,
-                        divisions: 20,
-                        activeColor: Colors.black,
-                        inactiveColor: Colors.black12,
-                        onChanged: (value) {}),
-                  ],
+                const SizedBox(width: 15),
+                Expanded(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          const SizedBox(
+                            width: 50,
+                            child: Text(
+                              'Price',
+                              style: const TextStyle(
+                                  fontSize: 11, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 160,
+                            child: Slider(
+                                value: product.price.toDouble(),
+                                min: 0,
+                                max: 200000,
+                                divisions: 20,
+                                activeColor: Colors.black,
+                                inactiveColor: Colors.black12,
+                                onChanged: (value) {}),
+                          ),
+                          Text(
+                            '\R\p ${product.price.toStringAsFixed(1)}',
+                            style: const TextStyle(
+                                fontSize: 11, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          const SizedBox(
+                            width: 50,
+                            child: Text(
+                              'Quantity',
+                              style: const TextStyle(
+                                  fontSize: 11, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 160,
+                            child: Slider(
+                                value: product.quantity.toDouble(),
+                                min: 0,
+                                max: 100,
+                                divisions: 20,
+                                activeColor: Colors.black,
+                                inactiveColor: Colors.black12,
+                                onChanged: (value) {}),
+                          ),
+                          Text(
+                            '${product.quantity}',
+                            style: const TextStyle(
+                                fontSize: 11, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 )
               ],
             )
