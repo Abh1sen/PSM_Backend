@@ -31,7 +31,7 @@ class ProductScreen extends StatelessWidget {
                   itemCount: Product.products.length,
                   itemBuilder: (context, index) {
                     return SizedBox(
-                      height: 120,
+                      height: 210,
                       child: ProductCard(product: Product.products[index]),
                     );
                   }),
@@ -54,13 +54,31 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Column(
-        children: [
-          Text(
-            product.name,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          )
-        ],
+      margin: const EdgeInsets.only(top: 10),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: [
+            Text(
+              product.name,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              product.description,
+              style: const TextStyle(fontSize: 12),
+            ),
+            const SizedBox(height: 40),
+            SizedBox(
+              height: 80,
+              width: 80,
+              child: Image.network(
+                product.imageUrl,
+                fit: BoxFit.cover,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
