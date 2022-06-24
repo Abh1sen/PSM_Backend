@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Haseena Backend',
       theme: ThemeData(primarySwatch: Colors.blue),
       home: const HomeScreen(),
-      getPages: [GetPage(name: '/products', page: () => const ProductScreen())],
+      getPages: [GetPage(name: '/products', page: () => ProductScreen())],
     );
   }
 }

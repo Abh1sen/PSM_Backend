@@ -6,8 +6,9 @@ import '/screens/screens.dart';
 import '/controllers/controllers.dart';
 
 class ProductScreen extends StatelessWidget {
-  const ProductScreen({Key? key}) : super(key: key);
+  ProductScreen({Key? key}) : super(key: key);
 
+  final ProductController productController = Get.put(ProductController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,11 +29,16 @@ class ProductScreen extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                  itemCount: Product.products.length,
+                  itemCount: productController.products.length,
                   itemBuilder: (context, index) {
-                    return SizedBox(
-                      height: 210,
-                      child: ProductCard(product: Product.products[index]),
+                    return Obx(
+                      () => SizedBox(
+                        height: 210,
+                        child: ProductCard(
+                          product: productController.products[index],
+                          index: index,
+                        ),
+                      ),
                     );
                   }),
             )
@@ -45,11 +51,12 @@ class ProductScreen extends StatelessWidget {
 
 class ProductCard extends StatelessWidget {
   final Product product;
+  final int index;
 
-  const ProductCard({
-    Key? key,
-    required this.product,
-  }) : super(key: key);
+  ProductCard({Key? key, required this.product, required this.index})
+      : super(key: key);
+
+  final ProductController productController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +98,7 @@ class ProductCard extends StatelessWidget {
                             child: Text(
                               'Price',
                               style: const TextStyle(
-                                  fontSize: 11, fontWeight: FontWeight.bold),
+                                  fontSize: 12, fontWeight: FontWeight.bold),
                             ),
                           ),
                           SizedBox(
@@ -103,12 +110,15 @@ class ProductCard extends StatelessWidget {
                                 divisions: 20,
                                 activeColor: Colors.black,
                                 inactiveColor: Colors.black12,
-                                onChanged: (value) {}),
+                                onChanged: (value) {
+                                  productController.updateProductPrice(
+                                      index, product, value);
+                                }),
                           ),
                           Text(
                             '\R\p ${product.price.toStringAsFixed(1)}',
                             style: const TextStyle(
-                                fontSize: 11, fontWeight: FontWeight.bold),
+                                fontSize: 10, fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
@@ -119,7 +129,7 @@ class ProductCard extends StatelessWidget {
                             child: Text(
                               'Quantity',
                               style: const TextStyle(
-                                  fontSize: 11, fontWeight: FontWeight.bold),
+                                  fontSize: 12, fontWeight: FontWeight.bold),
                             ),
                           ),
                           SizedBox(
@@ -131,12 +141,15 @@ class ProductCard extends StatelessWidget {
                                 divisions: 20,
                                 activeColor: Colors.black,
                                 inactiveColor: Colors.black12,
-                                onChanged: (value) {}),
+                                onChanged: (value) {
+                                  productController.updateProductQuantity(
+                                      index, product, value);
+                                }),
                           ),
                           Text(
                             '${product.quantity}',
                             style: const TextStyle(
-                                fontSize: 11, fontWeight: FontWeight.bold),
+                                fontSize: 12, fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
