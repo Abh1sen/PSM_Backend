@@ -86,7 +86,7 @@ class ProductCard extends StatelessWidget {
                         value: product.price.toDouble(),
                         min: 0,
                         max: 200000,
-                        divisions: 10,
+                        divisions: 20,
                         activeColor: Colors.black,
                         inactiveColor: Colors.black12,
                         onChanged: (value) {}),
