@@ -58,6 +58,7 @@ class ProductCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               product.name,
@@ -69,13 +70,29 @@ class ProductCard extends StatelessWidget {
               style: const TextStyle(fontSize: 12),
             ),
             const SizedBox(height: 40),
-            SizedBox(
-              height: 80,
-              width: 80,
-              child: Image.network(
-                product.imageUrl,
-                fit: BoxFit.cover,
-              ),
+            Row(
+              children: [
+                SizedBox(
+                  height: 80,
+                  width: 80,
+                  child: Image.network(
+                    product.imageUrl,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Column(
+                  children: [
+                    Slider(
+                        value: product.price.toDouble(),
+                        min: 0,
+                        max: 200000,
+                        divisions: 10,
+                        activeColor: Colors.black,
+                        inactiveColor: Colors.black12,
+                        onChanged: (value) {}),
+                  ],
+                )
+              ],
             )
           ],
         ),
