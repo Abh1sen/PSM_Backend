@@ -27,6 +27,33 @@ class ProductScreen extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
+            SizedBox(
+              height: 100,
+              child: Card(
+                margin: EdgeInsets.zero,
+                color: Colors.black,
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Get.to(() => const NewProductScreen());
+                      },
+                      icon: Icon(
+                        Icons.add_circle,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const Text(
+                      'Add a New Product',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             Expanded(
               child: ListView.builder(
                   itemCount: productController.products.length,
