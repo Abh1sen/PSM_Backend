@@ -1,8 +1,16 @@
 import 'package:get/get.dart';
 import 'package:psm_backend/models/models.dart';
+import 'package:psm_backend/services/database_service.dart';
 
 class ProductController extends GetxController {
-  List<Product> products = Product.products.obs;
+  final DatabaseService database = DatabaseService();
+  var products = <Product>[].obs;
+
+  @override
+  void onInit() {
+    products.bindStream(database.getProducts());
+    super.onInit();
+  }
 
   var newProduct = {}.obs;
 

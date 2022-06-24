@@ -55,19 +55,19 @@ class ProductScreen extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                  itemCount: productController.products.length,
-                  itemBuilder: (context, index) {
-                    return Obx(
-                      () => SizedBox(
+              child: Obx(
+                () => ListView.builder(
+                    itemCount: productController.products.length,
+                    itemBuilder: (context, index) {
+                      return SizedBox(
                         height: 210,
                         child: ProductCard(
                           product: productController.products[index],
                           index: index,
                         ),
-                      ),
-                    );
-                  }),
+                      );
+                    }),
+              ),
             )
           ],
         ),
