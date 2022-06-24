@@ -131,16 +131,21 @@ class ProductCard extends StatelessWidget {
                           SizedBox(
                             width: 160,
                             child: Slider(
-                                value: product.price.toDouble(),
-                                min: 0,
-                                max: 200000,
-                                divisions: 20,
-                                activeColor: Colors.black,
-                                inactiveColor: Colors.black12,
-                                onChanged: (value) {
-                                  productController.updateProductPrice(
-                                      index, product, value);
-                                }),
+                              value: product.price.toDouble(),
+                              min: 0,
+                              max: 200000,
+                              divisions: 20,
+                              activeColor: Colors.black,
+                              inactiveColor: Colors.black12,
+                              onChanged: (value) {
+                                productController.updateProductPrice(
+                                    index, product, value);
+                              },
+                              onChangeEnd: (value) {
+                                productController.saveNewProductPrice(
+                                    product, 'price', value);
+                              },
+                            ),
                           ),
                           Text(
                             '\R\p ${product.price.toStringAsFixed(1)}',
@@ -162,16 +167,21 @@ class ProductCard extends StatelessWidget {
                           SizedBox(
                             width: 160,
                             child: Slider(
-                                value: product.quantity.toDouble(),
-                                min: 0,
-                                max: 100,
-                                divisions: 20,
-                                activeColor: Colors.black,
-                                inactiveColor: Colors.black12,
-                                onChanged: (value) {
-                                  productController.updateProductQuantity(
-                                      index, product, value);
-                                }),
+                              value: product.quantity.toDouble(),
+                              min: 0,
+                              max: 100,
+                              divisions: 20,
+                              activeColor: Colors.black,
+                              inactiveColor: Colors.black12,
+                              onChanged: (value) {
+                                productController.updateProductQuantity(
+                                    index, product, value);
+                              },
+                              onChangeEnd: (value) {
+                                productController.saveNewProductQuantity(
+                                    product, 'quantity', value.toInt());
+                              },
+                            ),
                           ),
                           Text(
                             '${product.quantity}',
