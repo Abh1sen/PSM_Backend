@@ -12,4 +12,8 @@ class DatabaseService {
       return snapshot.docs.map((doc) => Product.fromSnapshot(doc)).toList();
     });
   }
+
+  Future<void> addProduct(Product product) {
+    return _firebaseFirestore.collection('products').add(product.toMap());
+  }
 }
