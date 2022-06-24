@@ -76,10 +76,12 @@ class NewProductScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              _buildTextFormField('Product ID'),
-              _buildTextFormField('Product Name'),
-              _buildTextFormField('Product Description'),
-              _buildTextFormField('Product Category'),
+              _buildTextFormField('Product ID', 'id', productController),
+              _buildTextFormField('Product Name', 'name', productController),
+              _buildTextFormField(
+                  'Product Description', 'description', productController),
+              _buildTextFormField(
+                  'Product Category', 'category', productController),
               const SizedBox(
                 height: 20,
               ),
@@ -116,7 +118,7 @@ class NewProductScreen extends StatelessWidget {
               Center(
                 child: ElevatedButton(
                     onPressed: () {
-                      print('Save');
+                      print(productController.newProduct);
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Colors.black,
@@ -209,9 +211,20 @@ class NewProductScreen extends StatelessWidget {
     );
   }
 
-  TextFormField _buildTextFormField(String hintText) {
+  TextFormField _buildTextFormField(
+    String hintText,
+    String name,
+    ProductController productController,
+  ) {
     return TextFormField(
       decoration: InputDecoration(hintText: hintText),
+      onChanged: (value) {
+        productController.newProduct.update(
+          name,
+          (_) => value,
+          ifAbsent: () => value,
+        );
+      },
     );
   }
 }
