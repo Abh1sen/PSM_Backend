@@ -3,11 +3,13 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:psm_backend/controllers/controllers.dart';
+import 'package:psm_backend/services/storage_service.dart';
 
 class NewProductScreen extends StatelessWidget {
   NewProductScreen({Key? key}) : super(key: key);
 
   final ProductController productController = Get.find();
+  StorageService storage = StorageService();
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,17 @@ class NewProductScreen extends StatelessWidget {
                                     content: Text('No Image was Selected.')));
                           }
 
-                          if (_image != null) {}
+                          if (_image != null) {
+                            await storage.uploadImage(_image);
+                            var imageUrl =
+                                await storage.getDownloadURL(_image.name);
+
+                            productController.newProduct.update(
+                                'imageUrl', (_) => imageUrl,
+                                ifAbsent: () => imageUrl);
+
+                            print(productController.newProduct['imageUrl']);
+                          }
                         },
                         icon: Icon(
                           Icons.add_circle,
