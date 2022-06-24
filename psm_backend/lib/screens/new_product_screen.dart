@@ -75,9 +75,33 @@ class NewProductScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
+            _buildCheckBox('Recommended'),
+            _buildCheckBox('Popular'),
           ],
         ),
       ),
+    );
+  }
+
+  Row _buildCheckBox(String title) {
+    return Row(
+      children: [
+        SizedBox(
+          width: 125,
+          child: Text(
+            title,
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        Checkbox(
+            value: true,
+            checkColor: Colors.black,
+            activeColor: Colors.black12,
+            onChanged: (value) {}),
+      ],
     );
   }
 
